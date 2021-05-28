@@ -1,0 +1,21 @@
+{
+  "name": "cudtracker",
+  "version": "1.0.0",
+  "description": "cud tracker by node js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "sun-23",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.5",
+    "cron": "^1.8.2",
+    "firebase": "^8.2.6",
+    "nodemailer": "^6.4.17",
+    "puppeteer": "^5.5.0",
+    "request": "^2.88.2"
+  }
+}
