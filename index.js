@@ -197,6 +197,7 @@ const main = async () => {
     await load_data()
     await login()
     await check()
+    console.log('hello');
     console.log('n: ',n);
     n = n + 1;
     setInterval(async () => {
