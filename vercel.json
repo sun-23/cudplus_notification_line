@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "name": "cudplus-notification-line",
+  "builds": [
+    { "src": "index.js", "use": "@vercel/node" }
+  ]
+}
