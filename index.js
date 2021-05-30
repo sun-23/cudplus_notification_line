@@ -241,3 +241,4 @@ const main = async () => {
     },5000)
 }
 main();
+module.exports = main;
