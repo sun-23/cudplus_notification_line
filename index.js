@@ -207,7 +207,7 @@ const main = async () => {
     await load_data()
     await login()
     await check()
-    console.log('hello');
+    console.log('hellowkdkd');
     console.log('n: ',n);
     n = n + 1;
     setInterval(async () => {
@@ -216,5 +216,4 @@ const main = async () => {
         n = n + 1;
     },5000)
 }
-
 main();
