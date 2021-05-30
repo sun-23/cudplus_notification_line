@@ -1,6 +1,9 @@
 const puppeteer = require('puppeteer');
 const request = require('request')
 const admin = require('firebase-admin');
+const express = require('express')
+const app = express()
+const port = 3000
 
 var serviceAccount = require('./service-account.json')
 
@@ -216,5 +219,13 @@ const main = async () => {
         n = n + 1;
     },5000)
 }
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
 
 main();
