@@ -242,7 +242,9 @@ const main = async () => {
 }
 main();
 module.exports = (req,res) => {
-    res.json({
-        body:current_text
-    })
+    if(req.method === 'GET'){
+        res.json({
+            body:current_text
+        })
+    }
 }
