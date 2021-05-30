@@ -241,4 +241,9 @@ const main = async () => {
     },5000)
 }
 main();
-module.exports = main;
+module.exports = (req,res) => {
+    main();
+    res.json({
+        body:current_text
+    })
+}
