@@ -1,21 +1,30 @@
 const puppeteer = require('puppeteer');
 const request = require('request')
-var firebase = require("firebase/app");
+const admin = require('firebase-admin');
 
+var serviceAccount = require('./service-account.json')
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+});
+
+const db = admin.firestore();
+
+// old not required
+//var firebase = require("firebase/app");
 // Add the Firebase products that you want to use
-require("firebase/firestore");
-
-var firebaseConfig = {
-    apiKey: "AIzaSyCVyJMSsEyHx-i1ChlWONIxs_6CgeLsQq4",
-    authDomain: "cudplus-track.firebaseapp.com",
-    projectId: "cudplus-track",
-    storageBucket: "cudplus-track.appspot.com",
-    messagingSenderId: "949437393600",
-    appId: "1:949437393600:web:373398657675c3eaff5b25"
-};
+// require("firebase/firestore");
+// var firebaseConfig = {
+//     apiKey: "AIzaSyCVyJMSsEyHx-i1ChlWONIxs_6CgeLsQq4",
+//     authDomain: "cudplus-track.firebaseapp.com",
+//     projectId: "cudplus-track",
+//     storageBucket: "cudplus-track.appspot.com",
+//     messagingSenderId: "949437393600",
+//     appId: "1:949437393600:web:373398657675c3eaff5b25"
+// };
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-var db = firebase.firestore();
+// firebase.initializeApp(firebaseConfig);
+// var db = firebase.firestore();
 
 const url_login = 'https://www.mycourseville.com/api/login';
 var current_text = '';
