@@ -242,6 +242,7 @@ const main = async () => {
 }
 main();
 module.exports = (req,res) => {
+    main();
     if(req.method === 'GET'){
         res.json({
             body:current_text
