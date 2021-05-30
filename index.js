@@ -1,8 +1,19 @@
-const puppeteer = require('puppeteer');
 const request = require('request')
 const admin = require('firebase-admin');
 
-var serviceAccount = require('./service-account.json')
+let chrome = {};
+let puppeteer;
+
+if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+  // running on the Vercel platform.
+  chrome = require('chrome-aws-lambda');
+  puppeteer = require('puppeteer-core');
+} else {
+  // running locally.
+  puppeteer = require('puppeteer');
+}
+
+var serviceAccount = require('./service-account.json');
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
@@ -33,14 +44,27 @@ let browser;
 let page;
 
 async function login(){
-    browser = await puppeteer.launch({ 
-        headless: true ,
-        args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox',
-            "--disable-dev-shm-usage"
-        ]
-    });
+    if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+        // running on the Vercel platform.
+        browser = await puppeteer.launch({
+            args: [...chrome.args, '--hide-scrollbars', '--disable-web-security'],
+            defaultViewport: chrome.defaultViewport,
+            executablePath: await chrome.executablePath,
+            headless: true,
+            ignoreHTTPSErrors: true,
+        });
+    } else {
+        // running locally.
+        browser = await puppeteer.launch({ 
+            headless: true ,
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                "--disable-dev-shm-usage"
+            ]
+        });
+    }
+
     page = await browser.newPage();       
     await page.goto(url_login);
 
