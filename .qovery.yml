@@ -1,0 +1,11 @@
+---
+application:
+  name: "cudplus-notification-line"
+  project: "text"
+  organization: "QoveryCommunity"
+routers:
+- name: "main-cudplus-notification-line"
+  routes:
+  - application_name: "cudplus-notification-line"
+    paths:
+    - "/*"
