@@ -242,7 +242,6 @@ const main = async () => {
 }
 main();
 module.exports = (req,res) => {
-    main();
     res.json({
         body:current_text
     })
