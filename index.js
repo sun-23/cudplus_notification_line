@@ -140,6 +140,7 @@ async function logout(){
     .catch(async (err) => {
         console.log('logout! err', err)
         await browser.close()
+        await login()
     });
     //#ss-app-navigation > li:nth-child(15) > a
     await Promise.all([
@@ -150,6 +151,7 @@ async function logout(){
     .catch(async (err) => {
         console.log('logout! err', err)
         await browser.close()
+        await login()
     });
 }
 
