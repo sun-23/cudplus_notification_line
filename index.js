@@ -139,7 +139,7 @@ async function logout(){
     .then(console.log('click logout!'))
     .catch(async (err) => {
         console.log('logout! err', err)
-        await browser.close()
+        //await browser.close()
         await login()
     });
     //#ss-app-navigation > li:nth-child(15) > a
@@ -150,7 +150,7 @@ async function logout(){
     .then(console.log('click logout!'))
     .catch(async (err) => {
         console.log('logout! err', err)
-        await browser.close()
+        //await browser.close()
         await login()
     });
 }
