@@ -132,29 +132,19 @@ async function check(){
 }
 
 async function logout(){
-    await Promise.all([
-        page.click('#ss-app-sidebar-control'),
-        page.waitForNavigation({ waitUntil: 'networkidle0' }),
-    ])
-    .then(console.log('click logout!'))
-    .catch(async (err) => {
-        console.log('logout! err', err)
-        //await browser.close()
+    const navigationPromise = page.waitForNavigation()
+    
+    try {
+        await page.waitForSelector('#ss-app-wrapper > #ss-app-main > #ss-app-header > #ss-app-sidebar-control > img')
+        await page.click('#ss-app-wrapper > #ss-app-main > #ss-app-header > #ss-app-sidebar-control > img')
+        await page.waitForSelector('#ss-app-sidebar > #ss-app-navigation > .ss-app-navigation-item:nth-child(15) > .ss-color-0 > .ss-app-navigation-item-label')
+        await page.click('#ss-app-sidebar > #ss-app-navigation > .ss-app-navigation-item:nth-child(15) > .ss-color-0 > .ss-app-navigation-item-label')
+        await navigationPromise
+        await browser.close()
         await login()
-    });
-    //#ss-app-navigation > li:nth-child(15) > a
-    await Promise.all([
-        page.click('#ss-app-navigation > li:nth-child(15) > a'),
-        page.waitForNavigation({ waitUntil: 'networkidle0' }),
-    ])
-    .then(console.log('click logout!'))
-    .catch(async (err) => {
-        console.log('logout! err', err)
-        await browser.close().catch((error) => {
-            return
-        })
-        await login()
-    });
+    } catch (error) {
+        throw error
+    }
 }
 
 async function store_data(text){
