@@ -55,7 +55,7 @@ async function login(){
     .catch(async (err) => {
         console.log('login err', err)
         await logout()
-        await browser.close()
+        //await browser.close()
         await login()
     });
 
@@ -67,7 +67,7 @@ async function login(){
     .catch(async (err) => {
         console.log('login err', err)
         await logout()
-        await browser.close()
+        //await browser.close()
         await login()
     });
     
@@ -81,7 +81,7 @@ async function login(){
     .catch(async (err) => {
         console.log('login err', err)
         await logout()
-        await browser.close()
+        //await browser.close()
         await login()
     });
 }
@@ -95,7 +95,7 @@ async function check(){
                 console.log('reload error', err)
                 //console.error
                 await logout()
-                await browser.close()
+                //await browser.close()
                 await login()
             });
     await page
@@ -124,7 +124,7 @@ async function check(){
                 console.log('error no selector', err)
                 //console.error
                 await logout()
-                await browser.close()
+                //await browser.close()
                 await login()
             });
     //let bodyHTML = await page.evaluate(() => document.body.innerHTML);
@@ -150,7 +150,9 @@ async function logout(){
     .then(console.log('click logout!'))
     .catch(async (err) => {
         console.log('logout! err', err)
-        //await browser.close()
+        await browser.close().catch((error) => {
+            return
+        })
         await login()
     });
 }
